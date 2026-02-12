@@ -1,23 +1,39 @@
-name: Granja Animales Node.js CI  #(1)
+Perfecto Samu 👌 gracias por la captura.
+Veo dos cosas importantes:
 
-on: #(2)
-  push:
-   branches:
-      - main
-  pull_request:
-    branches:
-      - main
-jobs: #(3)
-  build:
-    runs-on: ubuntu-latest #(4)
-    steps: #(5)
-    - name: Checkout repository # (6)
-      uses: actions/checkout@v2 #(7)
-    - name: Use Node.js
-      uses: actions/setup-node@v1 #(8)
-      with:
-        node-version: '18.x'
-    - name: Run Yarn #(9)
-      run: yarn
-    - name: Run tests
-      run: yarn test
+1️⃣ Has pegado la versión comentada con #(1), #(2), etc.
+2️⃣ Estás usando actions/setup-node@v1 y node-version: '18.x'
+
+No está mal, pero vamos a dejarlo limpio y actualizado para evitar problemas.
+
+━━━━━━━━━━━━━━━━━━
+🔧 Corrige el archivo test.yml
+━━━━━━━━━━━━━━━━━━
+
+Borra todo el contenido y deja exactamente esto:
+
+name: Granja Animales Node.js CI
+on:
+push:
+branches:
+- main
+pull_request:
+branches:
+- main
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout repository
+uses: actions/checkout@v4
+- name: Use Node.js
+uses: actions/setup-node@v4
+with:
+node-version: '18'
+- name: Install dependencies
+run: yarn install --frozen-lockfile
+- name: Run tests
+run: yarn test
+
+
+
